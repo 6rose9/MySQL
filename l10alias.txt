@@ -1,0 +1,11 @@
+=> Alias
+
+= Syntax
+
+SELECT column AS aliasname FROM tablename;
+
+----------------------------------------------------
+
+= EXERCISE
+
+SELECT firstname AS fullname FROM suppliers; //just print

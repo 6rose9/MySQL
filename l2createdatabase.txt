@@ -1,0 +1,32 @@
+=> Database List
+
+SHOW DATABASES;
+-------------------------------
+
+
+=> Choose Database
+
+USE databasename;
+--------------------------------
+
+
+=> Delete Database
+
+DROP DATABASE databasename;
+-------------------------------
+
+
+=> About Database Naming
+
+* Do
+CREATE DATABASE bookshop; //recommend
+CREATE DATABASE book_shop;
+CREATE DATABASE bookShop;
+
+* Don't
+CREATE DATABASE 5bookshop;
+CREATE DATABASE book$shop;
+CREATE DATABASE book Shop;
+
+-----------------------------------------
+

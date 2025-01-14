@@ -1,0 +1,19 @@
+=> REVERSE 
+
+Syntax
+
+SELECT REVERSE('hello world');
+SELECT REVERSE('meow meow');
+
+
+--------------------------------------------------
+
+SELECT REVERSE(firstname) 
+FROM persons;
+
+SELECT CONCAT('woof', '=', REVERSE('foow'));
+
+SELECT CONCAT(firstname, '=', REVERSE(firstname)) 
+FROM persons;
+
+-----------------------------------------------------------

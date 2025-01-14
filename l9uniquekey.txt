@@ -1,0 +1,105 @@
+=> UNIQUE KEY
+email
+phonenumber
+nrc
+passport
+studentid
+invoiceid
+cardid
+license
+
+METHOD 1 = Syntax Single
+
+CREATE TABLE IF NOT EXISTS tablename(
+    column1 datatype,
+    column2 datatype UNIQUE,
+    column3 datatype,
+    .....
+);
+
+-------------------------------------------
+=> Without UNIQUE
+CREATE TABLE IF NOT EXISTS vpns(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    score INT NOt NULL
+);
+
+DESC vpns;
+SHOW CREATE TABLE vpns;
+SHOW INDEX FROM vpns;
+
+INSERT INTO vpns(name,score)
+VALUES ('expressvpn',9),
+        ('pia',4),
+        ('1111',6),
+        ('pia',4),
+        ('1111',6);
+
+SELECT * FROM vpns;
+
+
+=> Without UNIQUE
+CREATE TABLE IF NOT EXISTS proxys(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    score INT NOt NULL
+);
+
+INSERT INTO proxys(name,score)
+VALUES ('expressvpn',9),
+        ('pia',4),
+        ('1111',6),
+        ('pia',4),
+        ('1111',6);
+
+
+ -------------------------------------------------------------
+
+METHOD 2 = Syntax Single
+
+ALTER TABLE tablename
+ADD UNIQUE (column1);
+
+---------------------------------------------------------------
+
+METHOD 3 = Syntax Multi
+
+ALTER TABLE tablename
+ADD CONSTRAIT uc_column1_column2 UNIQUE (column1,column2);
+
+
+=>wihout keyname set UNIQUE
+
+ALTER TABLE tablename
+ADD UNIQUE (column1,column2);
+
+CREATE TABLE IF NOT EXISTS suppliers(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    phone VARCHAR (15) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+
+ALTER TABLE suppliers
+ADD UNIQUE (email,phone);
+
+DESC suppliers;
+SHOW CREATE TABLE suppliers;
+SHOW INDEX FROM suppliers;
+
+DROP TABLE IF EXISTS suppliers;
+
+ALTER TABLE suppliers
+ADD CONSTRAINT uc_email_phone UNIQUE (email,phone);
+
+--------------------------------------------------
+
+=> drop UNIQUE keyname
+
+ALTER TABLE suppliers DROP INDEX uc_email_phone;
+
+-----------------------------------------------------

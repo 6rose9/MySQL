@@ -1,0 +1,17 @@
+=> UPPER & LOWER
+
+= Syntax UPPER()
+SELECT UPPER('hello world');
+
+= Syntax LOWER()
+SELECT LOWER ('Hello World');
+
+
+-------------------------------------------------
+
+SELECT UPPER(firstname)
+FROM suppliers;
+
+SELECT CONCAT(firstname,' ',lastname,'lives in',UPPER(city)) AS info
+FROM person;
+
