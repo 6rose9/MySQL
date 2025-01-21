@@ -1,0 +1,80 @@
+=> WHERE Clause
+
+= Syntax
+
+SELECT * FROM tablename
+WHERE condition;
+-----------------------------------------------
+
+SELECT * FROM persons;
+
+SELECT * FROM personss
+WHERE city = "Mandalay";
+
+SELECT firstname,lastname,city FROM persons
+WHERE city LIKE = "yangon";
+
+SELECT firstname FROM persons
+WHERE id = 1;
+
+SELECT * FROM persons
+WHERE lastname LIKE "myat";
+
+----------------------------------------------------
+
+!=   <>  NOT
+
+SELECT * FROM persons
+WHERE city = "Mandalay";
+
+SELECT * FROM persons
+WHERE city != "Mandalay";
+
+SELECT * FROM persons
+WHERE city <> "Mandalay";
+
+SELECT * FROM persons
+WHERE NOT city = "Mandalay";
+
+SELECT * FROM persons
+WHERE NOT city LIKE "Mandalay";
+
+
+----------------------------------------------------
+
+<=       <      >       >=
+
+SELECT * FROM persons
+WHERE age = 30;
+
+SELECT * FROM persons
+WHERE age < 30;
+
+SELECT * FROM persons
+WHERE age <= 30;
+
+SELECT * FROM persons
+WHERE age > 13;
+
+SELECT * FROM persons
+WHERE age >= 30;
+
+------------------------------------------------------
+
+BETWEEN with AND
+
+SELECT * FROM persons
+WHERE age BETWEEN 18 AND 30;
+
+SELECT * FROM persons
+WHERE age BETWEEN 18 AND 30 AND gender = "male";
+
+SELECT * FROM persons
+WHERE gender = "female" AND age NOT BETWEEN 20 AND 30;
+
+-----------------------------------------------------------
+
+
+
+
+
