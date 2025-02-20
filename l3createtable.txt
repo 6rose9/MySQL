@@ -39,8 +39,21 @@ CREATE TABLE persons{
 
 -----------------------------------------
 
-=> drop table
+=> drop table (Single)
 DROP TABLE tablename;
 DROP TABLE IF EXISTS tablename;
 
------------------------------------------
+=> drop table (Multi / Bulk)
+DROP TABLE persons,staffs, employees, users;
+DROP TABLE IF EXISTS persons,staffs,employees,users;
+-------------------------------------------
+
+=> Rename table
+
+* Syntax
+
+ALTER TABLE oldtablename 
+RENAME TO newtablename;
+
+ALTER TABLE persons
+RENAME TO peoples;
