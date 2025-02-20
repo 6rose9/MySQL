@@ -1,0 +1,23 @@
+=> String Data Types
+
+Data Types                                      Description
+----------                                      ------------
+
+BIT (size)                                     A bit-value type, from 1 to 64, default value is 1
+BOOL                                           Zero is considered as false, Non-Zero values are considered as true
+BOOLEAN                                        Hold a string with maximun size 6,xxx (6kb)
+
+TINYINT (SIZE)                                 A very small integer, singe range -128 to 127, Unsigned  range 0 to 255
+SMALLINT(SIZE)                                 A small integer, singe range -3277 to 3276, Unsigned range 0 to 6555(6kb)
+MEDIUMINT(SIZE)                                A integer, singe range -8388608 to 8388607, Unsigned range 0 to 16777215(16mb)
+INT                                            4gb
+INTEGER                                        4gb
+BIGINT()                                       A large integer
+
+DECIMAL(size, d)                               fixed-point number, default value for d is 0, used for finance(such as money, 999.99 is digit and 2 decimal DECIMAL(5,2)
+DEC (size,d)
+
+FLOAT(size, p)                                 floating point number(approximate value), p is optional, 0 to 24, used for science app
+FLOAT(p)
+DOUBLE(size, p)                                floating point number(approximate value), p is optional, 24 to 53,
+

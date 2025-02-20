@@ -1,0 +1,52 @@
+=> Date Data Type
+
+Data Type                                                   Description
+---------                                                   ------------
+
+DATE                                                        A date, Formate : YYYY-MM-DD, The supported range is form '1000-01-01' to '9999-12-31'
+DATETIME  / TIMESTAMP                                       A date and time combination, Format YYYY-MM-DD hh:mm:ss. 
+TIME                                                        A time. Format hh:mm:ss
+YEAR                                                        A year with four-digit Format
+
+=> EXERCISE
+
+DATE
++++++
+SELECT CURRENT_DATE(); # server date
+SELECT CURDATE();      # 2025-2-20
+
+TIME
+++++
+SELECT CURRENT_TIME();
+SELECT CURTIME();      # 6:41:26
+
+TIMESTAMP
++++++++++
+SELECT CURRENT_TIMESTAMP();
+SELECT CURRENT_TIMSTAMP;
+SELECT NOW();
+SELECT SYSDATE();
+
+----------------------------------------------------------------------------------------------------------
+
+=> INTERVAL
+
+SELECT NOW(), NOW() - INTERVAL 1 YEAR;
+SELECT NOW() + INTERVAL 2 YEAR;
+SELECT NOW() - INTERVAL 1 MONTH;
+SELECT NOW(), NOW() - INTERVAL 12 MONTH;
+SELECT NOW(), NOW() + INTERVAL 2 WEEK;
+SELECT NOW(), NOW() - INTERVAL 14 DAY;
+SELECT NOW() - INTERVAL 1 HOUR;
+SELECT NOW() - INTERVAL 2 MINUTE;
+SELECT NOW() - INTERVAL 3 SECOND;
+SELECT NOW() - INTERVAL 4 MICROSECOND;
+
+---------------------------------------------------------------------------------------------------------------
+
+=> LAST_DAY(date);
+
+SELECT NOW(), LAST_DAY(NOW()); #  2025-02-20 01:23:00  2025-02-28 
+SELECT LAST_DAY(CURDATE_DATE());
+SELECT LAST_DAY(CURDATE);
+SELECT LAST_DAY();
