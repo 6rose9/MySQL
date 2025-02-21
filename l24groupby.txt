@@ -1,0 +1,16 @@
+GROUP BY
+-----------
+
+=> Syntax
+
+SELECT col,...
+FROM table
+WHERE ....
+GROUP BY col....;
+
+SELECT city
+FROM customers
+GROUP BY city;
+
+SELECT DISTINCT city
+FROM customers;
