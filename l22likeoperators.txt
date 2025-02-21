@@ -1,0 +1,78 @@
+=> LIKE
+
+Syntax
+------
+
+SELECT column1,column2,...
+FROM table
+WHERE column LIKE pattern;
+
+=> LIKE Operators pattern
+
+WHERE column LIKE 'a%'                  Find any values that start with 'a'
+WHERE column LIKE 'a%'                  Find any values that end with 'a'
+WHERE column LIKE '%or%'                Find any values that have 'or' in any position
+WHERE column LIKE '_r%'                 Find any values that 'r' in the second position
+WHERE column LIKE 'r_%'                 Find any values that start with 'r' and at least 2 characters in length
+WHERE column LIKE 'r__%'                Find any values that start with 'r' and at least 3 characters in length
+WHERE column LIKE 'a%o'                 Find any values that start with 'a' and ending with 'o'
+
+------------------------------------------------------------------------------------------------------------------
+
+SELECT * 
+FROM customers
+WHERE firstname = "Aung"; # no result
+
+SELECT * 
+FROM customers
+WHERE firstname LIKE "Aung"; # aung
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "%g";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "m%";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "%un";
+
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "%un%";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "_a%";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "a__%";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "a____%";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "a%g";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "___";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "%";
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "\_%";
+
+
+SELECT *
+FROM customers
+WHERE firstname LIKE "%\_%";
