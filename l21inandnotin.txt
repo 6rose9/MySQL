@@ -1,0 +1,82 @@
+=> IN 
+------
+
+SELECT 10 IN (23,53,65,65,2,70,10); #1
+
+SELECT 10 IN (23,53,65,65,2,70,100); #0
+
+SELECT 'aung aung' IN ('Aung Aung', 'Maung Maung', 'Hla Hla', 'Aye Aye', 'Su Su'); #1
+
+SELECT 'aung' IN ('Aung Aung', 'Maung Maung', 'Hla Hla', 'Aye Aye', 'Su Su'); #0
+
+=> NOT IN
+----------
+
+SELECT 10 NOT IN (23,53,65,65,2,70,10); #1
+
+SELECT 10 NOT IN (23,53,65,65,2,70,100); #0
+
+SELECT 'aung aung' NOT IN ('Aung Aung', 'Maung Maung', 'Hla Hla', 'Aye Aye', 'Su Su'); #1
+
+SELECT 'aung' NOT IN ('Aung Aung', 'Maung Maung', 'Hla Hla', 'Aye Aye', 'Su Su'); #0
+
+----------------------------------------------------------------------------------------------------------------
+
+=> IN
+-----
+
+SELECT firstname, lastname, age, city
+FROM customers
+WHERE city = "Yangon";
+
+SELECT firstname, lastname, age, city
+FROM customers
+WHERE city IN ("Yangon");
+
+SELECT *
+FROM customers
+WHERE city = "Yangon" AND city = "Mandalay"; # empty restult
+
+SELECT *
+FROM customers
+WHERE city = "Yangon" OR city = "Mandalay";
+
+SELECT *
+FROM customers
+WHERE city IN ("Yangon", "Mandalay");
+
+SELECT *
+FROM customers
+WHERE city IN ("Yangon", "Mandalay")
+ORDER BY amount DESC;
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+=> NOT IN
+-----
+
+SELECT firstname, lastname, age, city
+FROM customers
+WHERE city != "Yangon";
+
+SELECT firstname, lastname, age, city
+FROM customers
+WHERE city NOT IN ("Yangon");
+
+SELECT *
+FROM customers
+WHERE city = "Yangon" AND city = "Mandalay"; # empty restult
+
+SELECT *
+FROM customers
+WHERE city = "Yangon" OR city = "Mandalay";
+
+SELECT *
+FROM customers
+WHERE city IN ("Yangon", "Mandalay");
+
+SELECT *
+FROM customers
+WHERE city IN ("Yangon", "Mandalay")
+ORDER BY amount DESC;
