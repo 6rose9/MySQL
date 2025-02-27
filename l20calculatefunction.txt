@@ -1,0 +1,110 @@
+=> COUNT(), SUM(), AVG(), MIN(), MAX() => Aggregate Function
+
+SELECT COUNT(col) FROM tablename
+WHERE condition
+
+SELECT SUM(col) FROM tablename
+WHERE condition
+
+SELECT AVG(col) FROM tablename
+WHERE condition
+
+SELECT MIN(col) FROM tablename
+WHERE condition
+
+SELECT MAX(col) FROM tablename
+WHERE condition
+
+-----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS customers(
+    id INT NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    age INT NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    city VARCHAR(30) NOT NULL,
+    amount DECIMAL(8,2) DEFAULT 0,
+    PRIMARY KEY(id)
+);
+
+DESC customers;
+SHOW INDEX FROM customers;
+SHOW CREATE TABLE customers;
+
+INSERT INTO customers(firstname,lastname,age,gender,city,amount)
+VALUES  ('aung','kyaw',50,'male','Yangon',15000),
+        ('bung','Aye',4,'female','Mandalay',5200),
+        ('cung','kyaw',35,'male','Bago',33000),
+        ('dung','kyaw',60,'male','Hpa An',6000),
+        ('eung','Aye',35,'female','Myawlamyine',5000),
+        ('fung','kyaw',30,'male','Pyay',6000),
+        ('gung','kyaw',23,'male','Taung Kyi',166000),
+        ('hung','kyaw',12,'female','Ye',53000),
+        ('iung','kyaw',6,'male','Yangon',80000),
+        ('jung','Aye',80,'female','Thaton',38000),
+        ('kung','kyaw',40,'male','Yangon',63000);
+
+
+
+count()
+-------
+SELECT COUNT(amount) FROM customers
+WHERE amount > 10000;
+
+SELECT COUNT(firstname) FROM customers
+WHERE firstname = "aung";
+
+SELECT COUNT(id) FROM customersSELECT COUNT(*) as people, SUM(amount) as totalamount FROM customers
+WHERE amount > 10000;
+WHERE firstname = "aung";
+
+SELECT COUNT(*) FROM customers
+WHERE city = 'Yangon';
+
+sum()
+-----
+SELECT SUM(amount) FROM customers 
+WHERE city = 'Mandalay';
+
+SELECT COUNT(*) as people, SUM(amount) as totalamount FROM customers
+WHERE amount > 10000;
+
+AVG()
+-----
+avg = sum / count
+
+SELECT AVG(amount) from customers;
+
+SELECT AVG(age) from customers
+WHERE city = 'Yangon';
+
+MIN()
+-----
+SELECT MIN(age) from customers;
+SELECT MIN(amount) from customers;
+
+SELECT * FROM customers
+WHERE amount = (SELECT MIN(amount) from customers WHERE city = 'Yangon');
+
+MAX()
+-----
+SELECT firstname, MAX(age) from customers;
+
+==============================================================================================
+
+### AI notes
+
+Order of operations for an SQL query : 
+
+1. FROM
+2. JOIN
+3. WHERE
+4. GROUP BY
+5. HAVING
+6. SELECT
+7. DISTINCT
+8. ORDER BY
+9. LIMIT / OFFSET
+
+Note :: Aggregate Function can't be used at where clause because where clause works before aggregate function
