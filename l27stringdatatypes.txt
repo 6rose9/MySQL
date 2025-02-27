@@ -20,3 +20,80 @@ LONGBLOB()                                      For BLOB(Binary Large Objects) .
 ENUM('val1', 'val2', 'val3'....)                A string object that can have only one value, choose from a list of possible value
 SET ('val1','val2', 'val3',....)                A string object that can have one or more value, choose from a list of possible value
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+= EXERCISE
+
+CREATE TABLE IF NOT EXISTS contacts(
+    name CHAR(5),
+    city VARCHAR(10)
+);
+
+DESC contacts;
+SHOW CREATE TABLE contacts;
+
+INSERT INTO contacts()
+VALUE('aung','yangon');
+
+# INSERT INTO contacts
+# VALUE('Tun Tun', 'Mandalay'); // error data tool long for column 'name' 
+
+DESC contacts;
+SHOW CREATE TABLE contacts;
+
+INSERT INTO contacts()
+VALUE('aung','yangon');
+
+# INSERT INTO contacts
+# VALUE('Tun Tun', 'Mandalay'); // error data tool long for column 'name' 
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS myjobs(
+  id INT,
+  content VARCHAR(10) DEFAULT ("nothing")
+);
+
+DESC myjobs;
+SHOW CREATE TABLE myjobs;
+DESC myjobs;
+
+INSERT INTO myjobs(id, content)
+VALUE(1, 'hello');
+
+INSERT INTO myjobs(content)
+VALUE('hi');
+
+# INSERT INTO myjobs
+# VALUE(3, 'hello world'); //error 
+
+INSERT INTO myjobs(id)
+VALUE(4);
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS myworks(
+  id INT,
+  content VARCHAR(255) DEFAULT "nothing to show",
+  message TEXT
+);
+
+DESC myworks;
+
+INSERT INTO myworks(id,content,message)
+VALUE(1, 'hello', "For BLOB(Binary Large Objects) . maximun size 4,xxx,xxx,xxFor BLOB(Binary Large Objects) . maximun size 68,xxx (6kb)x (4gb)"),
+(2, 'hello world', "For BLOB(Binary Large Objects) . maximun size 4,xxx,xxx,xxFor BLOB(Binary Large Objects) . maximun size 68,xxx (6kb)x (4gb)")
+;
+
+-----------------------------------------------------------------------------------------------------------------------
+
+#1101 - BLOB, TEXT, GEOMETRY or JSON can't have a default value
+
+CREATE TABLE IF NOT EXISTS mytasks(
+  id INT AUTO_INCREMENT
+  content VARCHAR(255) DEFAULT "Nothing to show"
+  message TEXT DEFAULT "this will give error"
+);
+
+
+
