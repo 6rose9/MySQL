@@ -14,3 +14,31 @@ GROUP BY city;
 
 SELECT DISTINCT city
 FROM customers;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=> GROUP By with COUNT()
+
+SELECT COUNT(*), city
+FROM customers
+GROUP BY city;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=> GROUP BY with MIN(), MAX(), AVG()
+
+SELECT city, SUM(amount) 
+FROM customers
+GROUP BY city;
+
+SELECT city, MIN(amount)
+FROM customers
+GROUP BY city;
+
+SELECT city, MIN(amount), COUNT(*)
+FROM customers
+GROUP BY city;
+
+SELECT CONCAT('Customers in ', city , 'buys maximum amount of ', MAX(amount)) AS 'show max'
+FROM customers
+GROUP BY city;
