@@ -50,3 +50,159 @@ SELECT NOW(), LAST_DAY(NOW()); #  2025-02-20 01:23:00  2025-02-28
 SELECT LAST_DAY(CURDATE_DATE());
 SELECT LAST_DAY(CURDATE);
 SELECT LAST_DAY();
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CREATE TABLE IF NOT EXISTS vipcustomers(
+	id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20),
+  birthdate DATE,
+  birthtime TIME,
+  year YEAR,
+  city VARCHAR(100),
+  PRIMARY KEY(id)
+);
+
+DESC vipcustomers;
+SHOW CREATE TABLE vipcustomers;
+SHOW INDEX FROM vipcustomers;
+
+INSERT INTO vipcustomers(name, birthdate,birthtime,year,city)
+VALUES('tin aung lin', '2005-02-23','10:23:34',2000,'Myawlamyine'),
+	  ('kyaw kyaw', '2001-05-23','15:23:34',2001,'Yangon'),
+      ('su su', '2002-03-23','17:23:34',2002,'Bagon'),
+      ('aye aye', '2003-07-23','00:23:34',2003,'Mandalay'),
+      ('thin thin', '2000-05-23','14:23:34',2000,'Myawlamyine'),
+      ('tin tin', '2002-10-23','23:23:34',2002,'Yangon'),
+      ('aung aung hein', '2010-02-23','19:23:34',2010,'Thaton'),
+	  ('tun tun', '1999-12-23','10:21:34',1999,'Taunggyi');
+
+SELECT name, birthdate, DAY(birthdate) FROM vipcustomers;
+SELECT name, birthdate, DAYNAME(birthdate) FROM vipcustomers;
+
+# 1 = Sunday, 2 = Monday, ... / (javascript) 0 = Sunday, 1 = Monday,...
+SELECT name, birthdate, DAYNAME(birthdate), DAYOFWEEK(birthdate) FROM vipcustomers;
+SELECT name, birthdate, DAYNAME(birthdate), DAYOFYEAR(birthdate) FROM vipcustomers;
+
+SELECT name, birthdate, MONTH(birthdate) FROM vipcustomers;
+SELECT name, birthdate, MONTHNAME(birthdate) FROM vipcustomers;
+
+SELECT name, birthdate, YEAR(birthdate) FROM vipcustomers;
+
+SELECT name, birthdate, HOUR(birthtime) FROM vipcustomers;
+SELECT name, birthdate, MINUTE(birthtime) FROM vipcustomers;
+SELECT name, birthdate, SECOND(birthtime) FROM vipcustomers;
+
+SELECT name, birthdate, CONCAT(YEAR(birthdate), '-', MONTH(birthdate), '-', DAY(birthdate)) 
+FROM vipcustomers;
+
+SELECT name, birthdate, CONCAT(YEAR(birthdate), '-', MONTH(birthdate), '-', DAY(birthdate)) AS date
+FROM vipcustomers;
+
+---------------------------------------------------------------------------------------------------------------
+
+=> BETWEEN with AND
+
+SELECT name, birthdate
+FROM vipcustomers
+WHERE birthdate BETWEEN '2002-01-01' AND '2005-12-31';
+
+SELECT name, birthdate
+FROM vipcustomers
+WHERE YEAR(birthdate) BETWEEN '2002' AND '2005';
+
+SELECT name, birthdate
+FROM vipcustomers
+WHERE YEAR(birthdate) BETWEEN 2002 AND 2005;
+
+SELECT name, birthdate, city
+FROM vipcustomers
+WHERE YEAR(birthdate) BETWEEN 2000 AND 2010 AND CITY IN('yangon', 'thaton');
+
+SELECT name, birthdate, city
+FROM vipcustomers
+WHERE MONTH(birthdate) <= 4;
+
+---------------------------------------------------------------------------------------------------------------
+
+=> DATE_ADD / ADDDATE()
+
+SELECT name, birthdate, birthdate + INTERVAL 1 MONTH 
+FROM vipcustomers;
+
+SELECT name, birthdate, DATE_ADD(birthdate, INTERVAL 1 MONTH) 
+FROM vipcustomers;
+
+SELECT name, birthdate, ADDDATE(birthdate, INTERVAL 1 MONTH) 
+FROM vipcustomers;
+
+1 QUARTER = 3 MONTHS
+
+SELECT name, birthdate, DATE_ADD(birthdate, INTERVAL 1 QUARTER) 
+FROM vipcustomers;
+
+SELECT name, birthdate, DATE_ADD(birthdate, INTERVAL 4 QUARTER) AS addoneyear
+FROM vipcustomers;
+
+SELECT name, birthdate, (birthdate+INTERVAL 1 MONTH+INTERVAL 10 HOUR) AS inteval_time
+FROM vipcustomers;
+
+SELECT name, birthdate, (birthdate + INTERVAL 1 MONTH + INTERVAL 10 HOUR + INTERVAL 25 MINUTE) AS inteval_time
+FROM vipcustomers;
+
+SELECT name, birthdate, (birthdate + INTERVAL 1 MONTH + INTERVAL 10 HOUR + INTERVAL 25 MINUTE + INTERVAL 50 SECOND) AS inteval_time
+FROM vipcustomers;
+
+---------------------------------------------------------------------------------------------------------------
+
+EXERCISE TIMESTAMP
+
+// TIMESTAMP DEFAULT VALUE => NOW() / CURRENT_TIMESTAMP / SYSDATE ...
+
+CREATE TABLE IF NOT EXISTS comments(
+  content VARCHAR(100),
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-------------------------------------
+
+CREATE TABLE IF NOT EXISTS feedbacks(
+  content VARCHAR(100),
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+DESC feedbacks;
+
+INSERT INTO feedbacks(content)
+VALUES 	('this is so funny'),
+				('this wonderful'),
+        ('pretty good'),
+			 	('how sweet');
+
+INSERT INTO feedbacks(content)
+VALUES 	('so good'),
+				("That's nice");
+
+UPDATE feedbacks
+SET content = "Bleh....Bleh..."
+WHERE content= "how sweet";
+
+-------------------------------------
+
+CREATE TABLE IF NOT EXISTS advices(
+  content VARCHAR(100),
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW() ON update
+);
+
+
+INSERT INTO advices(content)
+VALUES 	('this is so funny'),
+				('this wonderful'),
+        ('pretty good'),
+			 	('how sweet');
+
+UPDATE advices
+SET content = "Bleh....Bleh..."
+WHERE content= "how sweet";
