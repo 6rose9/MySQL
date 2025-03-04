@@ -1,0 +1,68 @@
+CREATE DATABASE IF NOT EXISTS shirtsdb;
+
+SHOW DATABASES;
+
+USE shirtsdb;
+
+CREATE TABLE IF NOT EXISTS shirts(
+  id INT NOT NULL AUTO_INCREMENT,
+  article VARCHAR(100),
+  color VARCHAR(100),
+  size VARCHAR(20),
+  PRIMARY KEY(id)
+);
+
+DESC shirts;
+
+SHOW CREATE TABLE shirts;
+
+----------------------------------------------
+
+INSERT INTO shirts(article, color, size)
+VALUES ("t-shirt", "white", "M"),
+			 ("polo shirt", "black", "S"),
+       ("sport shirt", "green", "L"),
+       ("sport shirt", "yellow", "S"),
+       ("t-shirt", "gray", "L"),
+			 ("polo shirt", "green" ,"M" );
+       
+INSERT INTO shirts(article, color, size)
+VALUE('t-shirt', 'red', 'S');
+
+----------------------------------------------
+
+SELECT * 
+FROM shirts
+WHERE size = "S";
+
+----------------------------------------------
+
+UPDATE shirts 
+SET size = "L"
+WHERE article = "polo shirt";
+
+UPDATE shirts
+SET size = "S"
+WHERE article = "polo shirt" AND color = "green";
+
+UPDATE shirts
+SET color = "pink"
+WHERE article = "sport shirt" OR id = 5;
+
+----------------------------------------------
+
+DELETE FROM shirts
+WHERE id = 7;
+
+INSERT INTO shirts(article, color, size)
+VALUE('t-shirt', 'red', 'S');
+
+------------------------------------------------------------Danger Zone------------------------------
+
+=> TRUNCATE (reset table data)
+
+TRUNCATE TABLE shirts;
+
+DROP TABLE IF EXISTS shirts;
+
+DROP DATABASE IF EXISTS shirtsdb;
