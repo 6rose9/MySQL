@@ -21,3 +21,151 @@ FLOAT(size, p)                                 floating point number(approximate
 FLOAT(p)
 DOUBLE(size, p)                                floating point number(approximate value), p is optional, 24 to 53,
 
+Note = DECIMAL for finance (such as money)
+       FLOAT & DOUBLE for science app
+
+===================================================================================================================
+
+EXERCISE
+--------
+
+CREATE TABLE IF NOT EXISTS items(
+    name VARCHAR(255),
+    price INT,
+    status BOOL
+);
+
+DESC items;
+
+INSERT INTO items(name, price)
+VALUES
+("coffee", 500 ),
+("cake", 800 ),
+("snack", 2500.80 ), # it output 2501, so should use DECIMAL for price
+("jam", 150),
+("water", 100);
+
+
+INSERT INTO items(name, price, status)
+VALUES
+("coffee", 500, 1 ),
+("cake", 800, 1 ),
+("snack", 2500.50,0 ),
+("jam", 150, 0),
+("water", 100, 2);
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CREATE TABLE IF NOT EXISTS proitems(
+	name VARCHAR(20),
+  purchaseprice INT(4) SIGNED,
+  sellprice INT(4) UNSIGNED
+);
+
+DESC proitems;
+SHOW CREATE TABLE proitems;
+
+INSERT INTO proitems(name, purchaseprice, sellprice)
+VALUES('water', 1000,1200),
+      ('coffee', 5000, 6000),
+      ('cake', 4000, 5500),
+      ('jam', -15000, 20000),
+      ('snack', -6000, 8000 );
+
+INSERT INTO proitems(name, purchaseprice, sellprice)
+VALUES('pen', 1000,-1200); # error : out of range bcz Unsigned sellprice
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+number data type
+int               fixed-point     floating-point
+integer           decimal         float/double
+
+DECIMAL(5,2)
+999.99 is 5 digits with 2 decimal digit
+
+
+DECIMAL(5,3) = 20.345
+               65.2 = 65.200
+               40.35354353 = 40.354 (warning)
+
+CREATE TABLE IF NOT EXISTS sellitems(
+  name VARCHAR(20),
+  price DECIMAL(6,2)
+);
+
+DESC sellitems;
+
+INSERT INTO sellitems
+VALUES('water', 50.5),
+			('juice', 120.6804);
+
+ INSERT INTO sellitems
+ VALUE('redbull', 1000.25);
+
+  INSERT INTO sellitems
+ VALUE('redbull', 1000.999); # 1001.00
+
+  INSERT INTO sellitems
+ VALUE('mangon', 1000.9858);
+
+ INSERT INTO sellitems
+ VALUE('deedo', 1000); # 1000.00
+
+ INSERT INTO sellitems
+ VALUE('icecoffee', 100000); # error : out of range 100000.00
+
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Float vs Double +++++++++++++++++++++++++
+
+ CREATE TABLE IF NOT EXISTS shoppings(
+  name VARCHAR(20),
+  purchaseprice FLOAT,
+  sellprice FLOAT(4) # size doesn't affect
+);
+
+DESC shoppings;
+
+INSERT INTO shoppings
+VALUES('juice', 250.560, 300.550),
+      ('cakes', 9000, 10000);
+      
+INSERT INTO shoppings
+VALUES('birdnest', 111220, 112000.99); # 112001
+
+------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS buyings(
+	name VARCHAR(20),
+  purchaseprice FLOAT,
+  sellprice DOUBLE
+  );
+  
+  DESC buyings;
+  
+  INSERT INTO buyings
+  VALUES('redbull', 100,100),
+  			('sponsor', 500, 500.34),
+        ('joey', 800, 800.56),
+        ('deedo', 250 , 250.889),
+  			('cake', 9000, 10000);
+
+INSERT INTO buyings
+  VALUES('birdnest', 112223344.55,112223344.55 );
+
+INSERT INTO buyings
+  VALUES('birdnest', 1122233445555.55,1122233445555.55 );
+  
+INSERT INTO buyings
+  VALUES('birdnest', 112223344804583593.55,112223344804583593.55 ); #112223344804583600
+  
+------------------------------------------------------------
+
+=> e / E 
+
+ HTML input number type allow 'e/E' bcz e stand for exponential (exponent) which is a numeric symbol 
+ Eg. 200000 can be written as 2e5 (3e4 = 3 x 10 ^ 4 = 30000) // 3 * 10 ** 4
+
+ shift + 6 = ^ (call Caret or Hat)
+
+ 
+
