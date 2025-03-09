@@ -1,0 +1,177 @@
+/**
+*   Functions
+*/
+
+IF() Function
+-----------
+
+=> Syntax
+
+IF(condition, true, false);
+
+SELECT IF(100 > 20, "TRUE", "FALSE");
+
+SELECT IF(100 < 20, "TRUE", "FALSE");
+
+
+TRUNCATE() Function
+-----------------
+
+=> Syntax
+
+TRUNCATE(number, decimals)
+
+SELECT TRUNCATE(123.346,3)  # 123.346
+SELECT TRUNCATE(123.3469,3) # 123.346
+SELECT TRUNCATE(123.34,3)   # 123.34
+
+ROUND() Function
+--------------
+
+=> Syntax
+
+ROUND(number, decimals)
+
+SELECT ROUND(123.456);   # 123
+SELECT ROUND(123.456,1); # 123.5
+SELECT ROUND(123.456,2); # 123.46
+SELECT ROUND(123.456,5); # 123.456
+
+CEIL() Function
+-------------
+
+=> Syntax
+
+CEIL(number)
+CEILING(number)
+
+SELECT CEIL(123.456); # 124
+SELECT CEIL(123.001); # 124
+
+FLOOR() Function
+-------------
+
+=> Syntax
+
+FLOOR()
+
+SELECT FLOOR(123.456); # 123
+SELECT FLOOR(123.001); # 123
+SELECT FLOOR(123.999); # 123
+
+ABS() Function
+-------------
+
+=> Syntax
+
+ABS(number)
+
+SELECT ABS(123.456); # 123
+SELECT ABS(-123.001); # 123
+SELECT ABS(-123.999); # 123
+
+SQRT() Function
+-------------
+
+=> Syntax
+
+SQRT(number)
+
+SELECT SQRT(49); # 7
+SELECT SQRT(81); # 9
+SELECT SQRT(85); # 9.219544457292889
+
+POW() Function
+-------------
+
+=> Syntax
+
+POW(number)
+
+SELECT POW(7,2); # 49
+SELECT POW(9,2); # 81
+SELECT POW(10,6); # 1000000
+
+SIGN() Function
+-------------
+
+=> Syntax
+
+SIGN(number)
+
+if number > 0 it's return 1
+if number < 0 it's return -1
+if number = 0 it's return 0
+
+SELECT SIGN(1500);
+SELECT SIGN(-500);
+SELECT SIGN(0);
+
+==================================================================== IF() ===================================
+
+CREATE TABLE IF NOT EXISTS customers(
+  id INT NOT NULL AUTO_INCREMENT,
+  firstname VARCHAR(50),
+  lastname VARCHAR(50),
+  age INT,
+  gender VARCHAR(10),
+  PRIMARY KEY (id)
+);
+
+INSERT INTO customers(firstname, lastname, age, gender)
+VALUES("Su Su", "Aung", 30, "Female"),
+("Aye", "Nwe", 50, "Female"),
+("Hein", "Ko", 14, "Male"),
+("Zin Zin","Thin", 25, "Female"),
+("Pyaye", "Phyoe Aung",26,"Male");
+
+
+SELECT *,
+	IF(age <= 30, "Young", "Elder")
+FROM customers;
+
+SELECT *,
+	IF(age <= 30, "Young", "Elder") AS verify_age
+FROM customers;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ TRUNCATE() +++++++++++++++++++++++++++++
+
+SELECT name, price,
+	TRUNCATE(price, 1)
+FROM sellitems;
+
+SELECT name, price,
+	TRUNCATE(price, 0) AS 'integer'
+FROM sellitems;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ROUND() ++++++++++++++++++++++++++++++++
+
+SELECT name, price,
+	ROUND(price, 1)
+FROM sellitems;
+
+SELECT name, price,
+	ROUND(price, 0) AS 'integer'
+FROM sellitems;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CEIL() / CEILING() ++++++++++++++++++++++
+
+SELECT name, price,
+	CEIL(price)
+FROM sellitems;
+
+SELECT name, price,
+	CEILING(price) AS 'integer'
+FROM sellitems;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ FLOOR() +++++++++++++++++++++++++++++++++
+
+SELECT name, price,
+	FLOOR(price)
+FROM sellitems;
+
+SELECT name, price,
+	FLOOR(price) AS 'integer'
+FROM sellitems;
+
+
