@@ -1,0 +1,54 @@
+/**
+*   Copy/ Clone/ Duplicate Table
+*
+*/
+
+Syntax
+-------
+
+CREATE TABLE IF NOT EXISTS newtablename
+SELECT col1, col2, col3
+FROM existingtablename;
+
+CREATE TABLE IF NOT EXISTS newtablename
+SELECT col1, col2, col3
+FROM existingtablename
+WHERE condition;
+
+===========================================================================
+
+CREATE TABLE IF NOT EXISTS originaltable(
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  productname VARCHAR(45) NOT NULL,
+  brandname VARCHAR(45) DEFAULT NULL,
+  madeby VARCHAR(45) DEFAULT NULL,
+  year YEAR NOT NULL
+);
+
+DESC originaltable;
+SHOW CREATE TABLE originaltable;
+SHOW INDEX FROM originaltable;
+
+
+INSERT INTO originaltable(productname, brandname, madeby, year)
+VALUES("AV25", "Asus", "China", 2020),
+			("F11", "Asus", "China", 2021),
+      ("S10", "Samsung", "China", 2020),
+      ("V29", "Vivo", "China", 2023),
+      ("iPhone 14", "Apple", "China", 2023),
+      ("iPhone 15", "Applc", "China", 2025),
+      ("F10", "Oppo", "China", 2021),
+      ("Note 10", "Samsung", "China", 2026),
+      ("AV25", "Asus", "China", 2019),
+      ("V25", "Vivo", "China", 2015);
+
+CREATE TABLE IF NOT EXISTS duplicatetable
+SELECT * FROM originaltable; # not include PRIMARY KEY by DEFAULT
+
+SHOW CREATE TABLE duplicatetable;
+SHOW INDEX FROM duplicatetable;
+
+CREATE TABLE IF NOT EXISTS clonetable
+SELECT productname, year 
+FROM originaltable
+WHERE year = 2023;
