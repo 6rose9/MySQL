@@ -1,0 +1,42 @@
+/**
+*
+*   INNER JOIN
+*
+*/
+
+!!! Error bcz column 'id' in where clause is ambiguous
+
+SELECT * FROM buyers,orders
+WHERE id = buyers.id;
+
+=> Method 1
+
+SELECT * FROM buyers,orders
+WHERE buyers.id = orders.buyer_id;
+
+SELECT * FROM buyers,orders
+WHERE orders.buyer_id = buyers.id;
+
+SELECT * FROM orders,buyers
+WHERE orders.buyer_id = buyers.id;
+
+=> Method 2
+
+SELECT * FROM buyers
+JOIN orders
+ON buyers.id = orders.buyer_id;
+
+SELECT * FROM orders
+JOIN buyers
+ON buyers.id = orders.buyer_id;
+
+SELECT * FROM orders
+INER JOIN buyers
+ON buyers.id = orders.buyer_id;
+
+---------------------------------------------------------------------
+
+SELECT firstname, lastname, orderdate, amount
+FROM buyers
+JOIN orders
+ON buyers.id = orders.buyer_id;

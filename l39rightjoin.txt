@@ -1,0 +1,29 @@
+/**
+*
+*   RIGHT JOIN (LEFT OUTER JOIN)
+*
+*/
+
+=> Syntax
+
+SELECT col1, col2, col3 
+FROM table1
+RIGHT JOIN table2
+ON table1.col = table2.col;
+
+==================================================================================
+
+SELECT firstname, lastname, orderdate, amount
+FROM buyers
+RIGHT JOIN orders
+ON buyers.id = orders.buyer_id;
+
+SELECT firstname, lastname, orderdate, amount 
+FROM orders
+RIGHT JOIN buyers
+ON buyers.id = orders.buyer_id;
+
+SELECT firstname, lastname, orderdate, amount 
+FROM orders
+RIGHT OUTER JOIN buyers
+ON buyers.id = orders.buyer_id;

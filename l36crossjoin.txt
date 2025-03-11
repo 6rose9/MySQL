@@ -1,0 +1,180 @@
+/**
+*
+*   JOIN
+*
+*/
+
+1. INNER JOIN (or simple join)
+2. LEFT OUTER JOIN (or LEFT JOIN)
+3. RIGHT OUTER JOIN (or RIGHT JOIN)
+4. FULL JOIN
+
+NOTE :: Relation Basic Note
+
+1. One to One Relationship
+2. One to Many Relationship
+3. Many to Many Relationship
+
+===========================================================================
+
+CREATE TABLE IF NOT EXISTS buyers(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(20),
+    lastname VARCHAR(20),
+    email VARCHAR(50)
+);
+
+DESCRIBE buyers; # or 
+DESC buyers;
+
+SHOW CREATE TABLE buyers;
+SHOW INDEX FROM buyers;
+
+INSERT INTO buyers(firstname, lastname, email)
+VALUES ('Aung','Aung','aungaung@gmail.com'),
+('Nung','Nung','nung2@gmail.com'),
+('Su','Su','susu@gmail.com'),
+('Hla','Aung','hlaaung@gmail.com'),
+('Ko','Myo','komyo@gmail.com'),
+('Ma','Su','masu123@gmail.com'),
+('Phyo','Naung','phyonaung@gmail.com'),
+('Maung','Oo','maungmaungoo@gmail.com'),
+('Aye','Cho','ayechowin@gmail.com'),
+('Daw','Kyi','dawkyiphone@gmail.com');
+
+--------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT
+);
+
+DESC orders;
+SHOW CREATE TABLE orders;
+SHOW INDEX FROM orders;
+
+INSERT INTO orders(orderdate, amount, buyer_id)
+VALUES ('2024/4/2',465.00,2),
+('2024/4/3',59.34,1),
+('2024/5/2',34.64,6),
+('2024/4/10',200.53,3),
+('2023/4/2',64.88,8),
+('2024/4/12',100.00,5),
+('2024/10/16',350.45,7),
+('2024/9/27',343.34,9),
+('2025/3/21',645.23,10);
+
+INSERT INTO orders(orderdate, amount, buyer_id)
+VALUES ('2024/12/30',999.99,12);
+
+--------------------------------------------------
+
+=> Cross Join
+
+SELECT * FROM buyers, orders;
+SELECT * FROM orders, buyers;
+
+### output
+
+1	2024-04-02	465.00	2	1	Aung	Aung	aungaung@gmail.com
+1	2024-04-02	465.00	2	2	Nung	Nung	nung2@gmail.com
+1	2024-04-02	465.00	2	3	Su	Su	susu@gmail.com
+1	2024-04-02	465.00	2	4	Hla	Aung	hlaaung@gmail.com
+1	2024-04-02	465.00	2	5	Ko	Myo	komyo@gmail.com
+1	2024-04-02	465.00	2	6	Ma	Su	masu123@gmail.com
+1	2024-04-02	465.00	2	7	Phyo	Naung	phyonaung@gmail.com
+1	2024-04-02	465.00	2	8	Maung	Oo	maungmaungoo@gmail.com
+1	2024-04-02	465.00	2	9	Aye	Cho	ayechowin@gmail.com
+1	2024-04-02	465.00	2	10	Daw	Kyi	dawkyiphone@gmail.com
+2	2024-04-03	59.34	1	1	Aung	Aung	aungaung@gmail.com
+2	2024-04-03	59.34	1	2	Nung	Nung	nung2@gmail.com
+2	2024-04-03	59.34	1	3	Su	Su	susu@gmail.com
+2	2024-04-03	59.34	1	4	Hla	Aung	hlaaung@gmail.com
+2	2024-04-03	59.34	1	5	Ko	Myo	komyo@gmail.com
+2	2024-04-03	59.34	1	6	Ma	Su	masu123@gmail.com
+2	2024-04-03	59.34	1	7	Phyo	Naung	phyonaung@gmail.com
+2	2024-04-03	59.34	1	8	Maung	Oo	maungmaungoo@gmail.com
+2	2024-04-03	59.34	1	9	Aye	Cho	ayechowin@gmail.com
+2	2024-04-03	59.34	1	10	Daw	Kyi	dawkyiphone@gmail.com
+3	2024-05-02	34.64	6	1	Aung	Aung	aungaung@gmail.com
+3	2024-05-02	34.64	6	2	Nung	Nung	nung2@gmail.com
+3	2024-05-02	34.64	6	3	Su	Su	susu@gmail.com
+3	2024-05-02	34.64	6	4	Hla	Aung	hlaaung@gmail.com
+3	2024-05-02	34.64	6	5	Ko	Myo	komyo@gmail.com
+3	2024-05-02	34.64	6	6	Ma	Su	masu123@gmail.com
+3	2024-05-02	34.64	6	7	Phyo	Naung	phyonaung@gmail.com
+3	2024-05-02	34.64	6	8	Maung	Oo	maungmaungoo@gmail.com
+3	2024-05-02	34.64	6	9	Aye	Cho	ayechowin@gmail.com
+3	2024-05-02	34.64	6	10	Daw	Kyi	dawkyiphone@gmail.com
+4	2024-04-10	200.53	3	1	Aung	Aung	aungaung@gmail.com
+4	2024-04-10	200.53	3	2	Nung	Nung	nung2@gmail.com
+4	2024-04-10	200.53	3	3	Su	Su	susu@gmail.com
+4	2024-04-10	200.53	3	4	Hla	Aung	hlaaung@gmail.com
+4	2024-04-10	200.53	3	5	Ko	Myo	komyo@gmail.com
+4	2024-04-10	200.53	3	6	Ma	Su	masu123@gmail.com
+4	2024-04-10	200.53	3	7	Phyo	Naung	phyonaung@gmail.com
+4	2024-04-10	200.53	3	8	Maung	Oo	maungmaungoo@gmail.com
+4	2024-04-10	200.53	3	9	Aye	Cho	ayechowin@gmail.com
+4	2024-04-10	200.53	3	10	Daw	Kyi	dawkyiphone@gmail.com
+5	2023-04-02	64.88	8	1	Aung	Aung	aungaung@gmail.com
+5	2023-04-02	64.88	8	2	Nung	Nung	nung2@gmail.com
+5	2023-04-02	64.88	8	3	Su	Su	susu@gmail.com
+5	2023-04-02	64.88	8	4	Hla	Aung	hlaaung@gmail.com
+5	2023-04-02	64.88	8	5	Ko	Myo	komyo@gmail.com
+5	2023-04-02	64.88	8	6	Ma	Su	masu123@gmail.com
+5	2023-04-02	64.88	8	7	Phyo	Naung	phyonaung@gmail.com
+5	2023-04-02	64.88	8	8	Maung	Oo	maungmaungoo@gmail.com
+5	2023-04-02	64.88	8	9	Aye	Cho	ayechowin@gmail.com
+5	2023-04-02	64.88	8	10	Daw	Kyi	dawkyiphone@gmail.com
+6	2024-04-12	100.00	5	1	Aung	Aung	aungaung@gmail.com
+6	2024-04-12	100.00	5	2	Nung	Nung	nung2@gmail.com
+6	2024-04-12	100.00	5	3	Su	Su	susu@gmail.com
+6	2024-04-12	100.00	5	4	Hla	Aung	hlaaung@gmail.com
+6	2024-04-12	100.00	5	5	Ko	Myo	komyo@gmail.com
+6	2024-04-12	100.00	5	6	Ma	Su	masu123@gmail.com
+6	2024-04-12	100.00	5	7	Phyo	Naung	phyonaung@gmail.com
+6	2024-04-12	100.00	5	8	Maung	Oo	maungmaungoo@gmail.com
+6	2024-04-12	100.00	5	9	Aye	Cho	ayechowin@gmail.com
+6	2024-04-12	100.00	5	10	Daw	Kyi	dawkyiphone@gmail.com
+7	2024-10-16	350.45	7	1	Aung	Aung	aungaung@gmail.com
+7	2024-10-16	350.45	7	2	Nung	Nung	nung2@gmail.com
+7	2024-10-16	350.45	7	3	Su	Su	susu@gmail.com
+7	2024-10-16	350.45	7	4	Hla	Aung	hlaaung@gmail.com
+7	2024-10-16	350.45	7	5	Ko	Myo	komyo@gmail.com
+7	2024-10-16	350.45	7	6	Ma	Su	masu123@gmail.com
+7	2024-10-16	350.45	7	7	Phyo	Naung	phyonaung@gmail.com
+7	2024-10-16	350.45	7	8	Maung	Oo	maungmaungoo@gmail.com
+7	2024-10-16	350.45	7	9	Aye	Cho	ayechowin@gmail.com
+7	2024-10-16	350.45	7	10	Daw	Kyi	dawkyiphone@gmail.com
+8	2024-09-27	343.34	9	1	Aung	Aung	aungaung@gmail.com
+8	2024-09-27	343.34	9	2	Nung	Nung	nung2@gmail.com
+8	2024-09-27	343.34	9	3	Su	Su	susu@gmail.com
+8	2024-09-27	343.34	9	4	Hla	Aung	hlaaung@gmail.com
+8	2024-09-27	343.34	9	5	Ko	Myo	komyo@gmail.com
+8	2024-09-27	343.34	9	6	Ma	Su	masu123@gmail.com
+8	2024-09-27	343.34	9	7	Phyo	Naung	phyonaung@gmail.com
+8	2024-09-27	343.34	9	8	Maung	Oo	maungmaungoo@gmail.com
+8	2024-09-27	343.34	9	9	Aye	Cho	ayechowin@gmail.com
+8	2024-09-27	343.34	9	10	Daw	Kyi	dawkyiphone@gmail.com
+9	2025-03-21	645.23	10	1	Aung	Aung	aungaung@gmail.com
+9	2025-03-21	645.23	10	2	Nung	Nung	nung2@gmail.com
+9	2025-03-21	645.23	10	3	Su	Su	susu@gmail.com
+9	2025-03-21	645.23	10	4	Hla	Aung	hlaaung@gmail.com
+9	2025-03-21	645.23	10	5	Ko	Myo	komyo@gmail.com
+9	2025-03-21	645.23	10	6	Ma	Su	masu123@gmail.com
+9	2025-03-21	645.23	10	7	Phyo	Naung	phyonaung@gmail.com
+9	2025-03-21	645.23	10	8	Maung	Oo	maungmaungoo@gmail.com
+9	2025-03-21	645.23	10	9	Aye	Cho	ayechowin@gmail.com
+9	2025-03-21	645.23	10	10	Daw	Kyi	dawkyiphone@gmail.com
+10	2024-12-30	999.99	12	1	Aung	Aung	aungaung@gmail.com
+10	2024-12-30	999.99	12	2	Nung	Nung	nung2@gmail.com
+10	2024-12-30	999.99	12	3	Su	Su	susu@gmail.com
+10	2024-12-30	999.99	12	4	Hla	Aung	hlaaung@gmail.com
+10	2024-12-30	999.99	12	5	Ko	Myo	komyo@gmail.com
+10	2024-12-30	999.99	12	6	Ma	Su	masu123@gmail.com
+10	2024-12-30	999.99	12	7	Phyo	Naung	phyonaung@gmail.com
+10	2024-12-30	999.99	12	8	Maung	Oo	maungmaungoo@gmail.com
+10	2024-12-30	999.99	12	9	Aye	Cho	ayechowin@gmail.com
+10	2024-12-30	999.99	12	10	Daw	Kyi	dawkyiphone@gmail.com
